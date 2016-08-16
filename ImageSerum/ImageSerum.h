@@ -15,5 +15,3 @@ FOUNDATION_EXPORT double ImageSerumVersionNumber;
 FOUNDATION_EXPORT const unsigned char ImageSerumVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <ImageSerum/PublicHeader.h>
-
-
