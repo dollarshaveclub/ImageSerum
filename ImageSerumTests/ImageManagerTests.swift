@@ -9,25 +9,25 @@
 import XCTest
 import ImageSerum
 
-class MockPriorityQueue: PriorityQueue {
-    func insert(val: String, priority: Int) {
-
-    }
-    
-    func popMax() -> String? {
-        return nil
-    }
-    
-    func peakMax() -> String? {
-        return nil
-    }
-}
-
-class MockCache: ImageCache {
-    func imageForURL(URL: String) -> NSData? {
-        return nil
-    }
-}
+//class MockPriorityQueue: PriorityQueue {
+//    func insert(val: String, priority: Int) {
+//
+//    }
+//    
+//    func popMax() -> String? {
+//        return nil
+//    }
+//    
+//    func peakMax() -> String? {
+//        return nil
+//    }
+//}
+//
+//class MockCache: ImageCache {
+//    func imageForURL(URL: String) -> NSData? {
+//        return nil
+//    }
+//}
 
 class ImageManagerTests: XCTestCase {
     
@@ -36,7 +36,7 @@ class ImageManagerTests: XCTestCase {
     override func setUp() {
         super.setUp()
         
-        imageManager = ImageManager(priorityQueue: MockPriorityQueue(), imageCache: MockCache())
+//        imageManager = ImageManager(priorityQueue: MockPriorityQueue(), imageCache: MockCache())
     }
     
     override func tearDown() {

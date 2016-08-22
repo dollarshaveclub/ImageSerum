@@ -8,55 +8,104 @@
 
 import UIKit
 
-public enum ImageManagerError: ErrorType {
-    
-}
-
 public enum ImagePriority: Int {
     case Low = 10
     case Medium = 50
     case High = 100
 }
 
-public class ImageManager {
-    static let sharedManager = ImageManager(priorityQueue: HeapPriorityQueue(), imageCache: DiskImageCache())
+public class ImageManager: DownloadManagerDelegate {
+    static let sharedManager = ImageManager(imageCache: DiskImageCache(), downloadManager: DownloadManager.sharedManager)
 
-    public typealias ImageCompletion = ((image: UIImage?, error: ImageManagerError?) -> Void)
+    public typealias ImageCompletion = ((image: UIImage?, error: NSError?) -> Void)
     
-    let queue: PriorityQueue
     let cache: ImageCache
+    let downloadManager: DownloadManager
+    let dispatchQueue: dispatch_queue_t
+    var completionCallbacksForURL = [NSURL: [ImageCompletion]]()
     
-    var completionHolder = [String: [ImageCompletion]]()
-    
-    init(priorityQueue: PriorityQueue, imageCache: ImageCache) {
-        self.queue = priorityQueue
+    init(imageCache: ImageCache, downloadManager: DownloadManager) {
         self.cache = imageCache
+        self.downloadManager = downloadManager
+        self.dispatchQueue = dispatch_queue_create("com.dollarshaveclub.imageserum.imagemanager", DISPATCH_QUEUE_SERIAL)
     }
     
-    public func preloadImage(byURL URL: String, priority: ImagePriority = .Low) {
-        queue.insert(URL, priority: priority.rawValue)
+    public func preloadImage(byURL URL: NSURL, priority: ImagePriority = .Low) {
+        dispatch_barrier_async(dispatchQueue) { [weak self] in
+            guard let manager = self else {
+                return
+            }
+            
+            if !manager.cache.containsImageForURL(URL) {
+                manager.downloadManager.fetchImageToDisk(URL)
+            }
+        }
     }
     
-    public func getImage(byURL URL: String, completion: ImageCompletion) {
+    public func getImage(byURL URL: NSURL, completion: ImageCompletion) {
         // TODO:
         // Check for cache for data, if so decode and return
         // If cache miss, queue for download with high priority (or bump
         // existing queue item to high priority) and store callback
         // This call should be done async with a barrier or lock on the queue
         // and the cache to ensure that there isn't race conditions.
-        if let cachedData = cache.imageForURL(URL) {
-            // TODO: Decode image
-        } else {
-            addCompletionCallback(URL, completion: completion)
-            queue.insert(URL, priority: ImagePriority.High.rawValue)
+        dispatch_barrier_async(dispatchQueue) { [weak self] in
+            guard let manager = self else {
+                return
+            }
+            
+            if let cachedData = manager.cache.imageForURL(URL) {
+                // TODO: decode image and notify callback
+            } else {
+                manager.addCompletionCallback(URL, completion: completion)
+                manager.downloadManager.fetchImage(URL)
+            }
         }
     }
     
-    func addCompletionCallback(URL: String, completion: ImageCompletion) {
-        if var completions = completionHolder[URL] {
+    func addCompletionCallback(URL: NSURL, completion: ImageCompletion) {
+        if var completions = completionCallbacksForURL[URL] {
             completions.append(completion)
         } else {
-            completionHolder[URL] = [completion]
+            completionCallbacksForURL[URL] = [completion]
+        }
+    }
+    
+    func completeCallbacks(URL: NSURL, image: UIImage?, error: NSError?) {
+        if let callbacks = completionCallbacksForURL[URL] {
+            for callback in callbacks {
+                callback(image: image, error: error)
+            }
+        }
+    }
+    
+    // MARK: DownloadManagerDelegate
+    
+    func downloadManagerFinishedDownloading(URL: NSURL, data: NSData) {
+        dispatch_barrier_sync(dispatchQueue) { [weak self] in
+            guard let manager = self else{
+                return
+            }
+            
+            manager.cache.cacheImage(URL, data: data)
+            
+            // TODO: schedule decode and notify callbacks
+        }
+    }
+    
+    func downloadManagerFinishedDownloadingToDisk(URL: NSURL, fileURL: NSURL) {
+        dispatch_barrier_sync(dispatchQueue) { [weak self] in
+            guard let manager = self else{
+                return
+            }
+            
+            manager.cache.cacheImageFromURL(URL, at: fileURL)
+        }
+    }
+    
+    func downloadManagerFailedDownloading(URL: NSURL, error: DownloadManagerError) {
+        dispatch_barrier_async(dispatchQueue) { 
+            // TODO: notify callbacks of failed download
         }
     }
 }

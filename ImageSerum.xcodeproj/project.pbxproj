@@ -12,14 +12,16 @@
 		BF160EA61D5AA98C00C7CB56 /* ImageSerumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF160EA51D5AA98C00C7CB56 /* ImageSerumTests.swift */; };
 		BF30FB5E1D5D1B980078CD80 /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF30FB5D1D5D1B980078CD80 /* ImageManager.swift */; };
 		BF30FB601D5D1BEC0078CD80 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF30FB5F1D5D1BEC0078CD80 /* ImageCache.swift */; };
-		BF30FB6D1D5D26BE0078CD80 /* PriorityQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF30FB6C1D5D26BE0078CD80 /* PriorityQueue.swift */; };
+		BF8AE2A21D6B8ACD00016F42 /* DownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF082191D63D46E00EBDCCF /* DownloadManager.swift */; };
 		BFF082001D62833600EBDCCF /* CommonCrypto.h in Headers */ = {isa = PBXBuildFile; fileRef = BFF081FF1D62833600EBDCCF /* CommonCrypto.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BFF082091D629BD900EBDCCF /* CommonCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFF081FD1D62833600EBDCCF /* CommonCrypto.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		BFF0820B1D62A87400EBDCCF /* PriorityQueueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF0820A1D62A87400EBDCCF /* PriorityQueueTests.swift */; };
 		BFF0820D1D62FBDE00EBDCCF /* ImageManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF0820C1D62FBDE00EBDCCF /* ImageManagerTests.swift */; };
 		BFF082111D62FCC100EBDCCF /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF30FB5F1D5D1BEC0078CD80 /* ImageCache.swift */; };
 		BFF082121D62FCC400EBDCCF /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF30FB5D1D5D1B980078CD80 /* ImageManager.swift */; };
-		BFF082131D62FCC800EBDCCF /* PriorityQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF30FB6C1D5D26BE0078CD80 /* PriorityQueue.swift */; };
+		BFF082151D63BEEE00EBDCCF /* DownloadQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF082141D63BEEE00EBDCCF /* DownloadQueue.swift */; };
+		BFF082171D63CC2B00EBDCCF /* DownloadQueueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF082161D63CC2B00EBDCCF /* DownloadQueueTests.swift */; };
+		BFF082181D63CC3600EBDCCF /* DownloadQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF082141D63BEEE00EBDCCF /* DownloadQueue.swift */; };
+		BFF0821A1D63D46E00EBDCCF /* DownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF082191D63D46E00EBDCCF /* DownloadManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,15 +50,16 @@
 		BF160EA71D5AA98C00C7CB56 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BF30FB5D1D5D1B980078CD80 /* ImageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
 		BF30FB5F1D5D1BEC0078CD80 /* ImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
-		BF30FB6C1D5D26BE0078CD80 /* PriorityQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Priority\U0010Queue.swift"; sourceTree = "<group>"; };
 		BFF081F21D62831C00EBDCCF /* com.dollarshaveclub.CommonCrypto.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = com.dollarshaveclub.CommonCrypto.h; sourceTree = "<group>"; };
 		BFF081F41D62831C00EBDCCF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BFF081FD1D62833600EBDCCF /* CommonCrypto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CommonCrypto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFF081FF1D62833600EBDCCF /* CommonCrypto.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonCrypto.h; sourceTree = "<group>"; };
 		BFF082011D62833600EBDCCF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BFF082051D6283E400EBDCCF /* CommonCrypto.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = CommonCrypto.xcconfig; sourceTree = "<group>"; };
-		BFF0820A1D62A87400EBDCCF /* PriorityQueueTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PriorityQueueTests.swift; sourceTree = "<group>"; };
 		BFF0820C1D62FBDE00EBDCCF /* ImageManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageManagerTests.swift; sourceTree = "<group>"; };
+		BFF082141D63BEEE00EBDCCF /* DownloadQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadQueue.swift; sourceTree = "<group>"; };
+		BFF082161D63CC2B00EBDCCF /* DownloadQueueTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadQueueTests.swift; sourceTree = "<group>"; };
+		BFF082191D63D46E00EBDCCF /* DownloadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,7 +117,8 @@
 				BF160E9B1D5AA98C00C7CB56 /* Info.plist */,
 				BF30FB5F1D5D1BEC0078CD80 /* ImageCache.swift */,
 				BF30FB5D1D5D1B980078CD80 /* ImageManager.swift */,
-				BF30FB6C1D5D26BE0078CD80 /* PriorityQueue.swift */,
+				BFF082141D63BEEE00EBDCCF /* DownloadQueue.swift */,
+				BFF082191D63D46E00EBDCCF /* DownloadManager.swift */,
 			);
 			path = ImageSerum;
 			sourceTree = "<group>";
@@ -124,8 +128,8 @@
 			children = (
 				BF160EA51D5AA98C00C7CB56 /* ImageSerumTests.swift */,
 				BF160EA71D5AA98C00C7CB56 /* Info.plist */,
-				BFF0820A1D62A87400EBDCCF /* PriorityQueueTests.swift */,
 				BFF0820C1D62FBDE00EBDCCF /* ImageManagerTests.swift */,
+				BFF082161D63CC2B00EBDCCF /* DownloadQueueTests.swift */,
 			);
 			path = ImageSerumTests;
 			sourceTree = "<group>";
@@ -296,8 +300,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				BF30FB601D5D1BEC0078CD80 /* ImageCache.swift in Sources */,
+				BFF082151D63BEEE00EBDCCF /* DownloadQueue.swift in Sources */,
 				BF30FB5E1D5D1B980078CD80 /* ImageManager.swift in Sources */,
-				BF30FB6D1D5D26BE0078CD80 /* PriorityQueue.swift in Sources */,
+				BFF0821A1D63D46E00EBDCCF /* DownloadManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -305,12 +310,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BFF082131D62FCC800EBDCCF /* PriorityQueue.swift in Sources */,
 				BFF0820D1D62FBDE00EBDCCF /* ImageManagerTests.swift in Sources */,
+				BFF082181D63CC3600EBDCCF /* DownloadQueue.swift in Sources */,
 				BFF082121D62FCC400EBDCCF /* ImageManager.swift in Sources */,
+				BFF082171D63CC2B00EBDCCF /* DownloadQueueTests.swift in Sources */,
 				BF160EA61D5AA98C00C7CB56 /* ImageSerumTests.swift in Sources */,
 				BFF082111D62FCC100EBDCCF /* ImageCache.swift in Sources */,
-				BFF0820B1D62A87400EBDCCF /* PriorityQueueTests.swift in Sources */,
+				BF8AE2A21D6B8ACD00016F42 /* DownloadManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -556,6 +562,7 @@
 				BFF082041D62833600EBDCCF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
