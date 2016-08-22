@@ -103,8 +103,8 @@ public class ImageManager: DownloadManagerDelegate {
         }
     }
     
-    func downloadManagerFailedDownloading(URL: NSURL, error: DownloadManagerError) {
-        dispatch_barrier_async(dispatchQueue) { 
+    func downloadManagerFailedDownloading(URL: NSURL, error: NSError) {
+        dispatch_barrier_sync(dispatchQueue) {
             // TODO: notify callbacks of failed download
         }
     }
