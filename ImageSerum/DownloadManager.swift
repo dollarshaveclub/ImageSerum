@@ -28,8 +28,7 @@ class DownloadManager: NSObject, NSURLSessionDataDelegate, NSURLSessionDownloadD
     weak var delegate: DownloadManagerDelegate?
     
     var currentlyDownloading: Set<NSURL>
-    var backgroundDispatchQueue: dispatch_queue_t
-    var priorityDispatchQueue: dispatch_queue_t
+    var dispatchQueue: dispatch_queue_t
     var maxBackgroundDownloads = 2
     var maxPriorityDownloads = 2
     
@@ -37,8 +36,7 @@ class DownloadManager: NSObject, NSURLSessionDataDelegate, NSURLSessionDownloadD
     var concurrentPriorityDownloads = 0
     
     init(backgroundQueue: DownloadQueueProtocol, priorityQueue: DownloadQueueProtocol) {
-        self.backgroundDispatchQueue = dispatch_queue_create("com.dollarshaveclub.imageserum.background-dispatch-queue", DISPATCH_QUEUE_CONCURRENT)
-        self.priorityDispatchQueue = dispatch_queue_create("com.dollarshaveclub.imageserum.priority-dispatch-queue", DISPATCH_QUEUE_CONCURRENT)
+        self.dispatchQueue = dispatch_queue_create("com.dollarshaveclub.imageserum.priority-dispatch-queue", DISPATCH_QUEUE_SERIAL)
         self.currentlyDownloading = Set<NSURL>()
         self.backgroundQueue = backgroundQueue
         self.priorityQueue = priorityQueue
@@ -46,7 +44,7 @@ class DownloadManager: NSObject, NSURLSessionDataDelegate, NSURLSessionDownloadD
     }
     
     func fetchImageToDisk(URL: NSURL) {
-        dispatch_barrier_async(backgroundDispatchQueue) { [weak self] in
+        dispatch_async(dispatchQueue) { [weak self] in
             guard let manager = self else {
                 return
             }
@@ -60,7 +58,7 @@ class DownloadManager: NSObject, NSURLSessionDataDelegate, NSURLSessionDownloadD
     }
     
     func fetchImage(URL: NSURL) {
-        dispatch_barrier_async(backgroundDispatchQueue) { [weak self] in
+        dispatch_async(dispatchQueue) { [weak self] in
             guard let manager = self else {
                 return
             }
@@ -97,7 +95,7 @@ class DownloadManager: NSObject, NSURLSessionDataDelegate, NSURLSessionDownloadD
                         return
                     }
                     
-                    dispatch_barrier_async(manager.priorityDispatchQueue) { [weak self] in
+                    dispatch_async(manager.dispatchQueue) { [weak self] in
                         guard let manager = self else {
                             return
                         }
@@ -127,7 +125,7 @@ class DownloadManager: NSObject, NSURLSessionDataDelegate, NSURLSessionDownloadD
             return
         }
         
-        dispatch_barrier_async(backgroundDispatchQueue) { [weak self] in
+        dispatch_async(dispatchQueue) { [weak self] in
             guard let manager = self else {
                 return
             }
