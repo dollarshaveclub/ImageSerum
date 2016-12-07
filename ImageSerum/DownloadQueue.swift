@@ -9,18 +9,18 @@
 import Foundation
 
 protocol DownloadQueueProtocol {
-    func queue(URL: NSURL)
-    func pop() -> NSURL?
-    func removeDownload(URL: NSURL)
-    func contains(URL: NSURL) -> Bool
+    func queue(_ URL: URL)
+    func pop() -> URL?
+    func removeDownload(_ URL: URL)
+    func contains(_ URL: URL) -> Bool
 }
 
 class DownloadQueueNode {
-    var val: NSURL
+    var val: URL
     var before: DownloadQueueNode?
     var after: DownloadQueueNode?
     
-    init(val: NSURL) {
+    init(val: URL) {
         self.val = val
     }
 }
@@ -28,13 +28,13 @@ class DownloadQueueNode {
 class DownloadQueue: DownloadQueueProtocol {
     var head: DownloadQueueNode?
     var tail: DownloadQueueNode?
-    var nodesByURL: [NSURL: DownloadQueueNode]
+    var nodesByURL: [URL: DownloadQueueNode]
     
     init() {
-        self.nodesByURL = [NSURL: DownloadQueueNode]()
+        self.nodesByURL = [URL: DownloadQueueNode]()
     }
     
-    func queue(URL: NSURL) {
+    func queue(_ URL: Foundation.URL) {
         if nodesByURL[URL] == nil {
             let node = DownloadQueueNode(val: URL)
             
@@ -51,7 +51,7 @@ class DownloadQueue: DownloadQueueProtocol {
         }
     }
     
-    func pop() -> NSURL? {
+    func pop() -> URL? {
         guard let elem = head else {
             return nil
         }
@@ -62,13 +62,13 @@ class DownloadQueue: DownloadQueueProtocol {
             after.before = nil
         }
         
-        nodesByURL.removeValueForKey(elem.val)
+        nodesByURL.removeValue(forKey: elem.val)
         
         return elem.val
     }
     
-    func removeDownload(URL: NSURL) {
-        if let node = nodesByURL.removeValueForKey(URL) {
+    func removeDownload(_ URL: Foundation.URL) {
+        if let node = nodesByURL.removeValue(forKey: URL) {
             if head === node {
                 head = node.after
             }
@@ -87,14 +87,14 @@ class DownloadQueue: DownloadQueueProtocol {
         }
     }
     
-    func contains(URL: NSURL) -> Bool {
+    func contains(_ URL: Foundation.URL) -> Bool {
         return nodesByURL[URL] != nil
     }
     
-    func toArray() -> [NSURL] {
+    func toArray() -> [URL] {
         var current = head
         
-        var elements = [NSURL]()
+        var elements = [URL]()
         while current != nil {
             elements.append(current!.val)
             current = current!.after

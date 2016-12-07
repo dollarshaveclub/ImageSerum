@@ -10,9 +10,9 @@ import XCTest
 
 
 class DownloadQueueTests: XCTestCase {
-    let URLOne = NSURL(string: "http://one")!
-    let URLTwo = NSURL(string: "http://two")!
-    let URLThree = NSURL(string: "http://three")!
+    let URLOne = URL(string: "http://one")!
+    let URLTwo = URL(string: "http://two")!
+    let URLThree = URL(string: "http://three")!
     
     var queue: DownloadQueue!
 

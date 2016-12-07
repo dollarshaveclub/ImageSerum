@@ -10,10 +10,10 @@ import Foundation
 import CommonCrypto
 
 protocol ImageCache {
-    func containsImageForURL(URL: NSURL) -> Bool
-    func imageForURL(URL: NSURL) -> NSData?
-    func cacheImageFromURL(URL: NSURL, at fileURL: NSURL)
-    func cacheImage(URL: NSURL, data: NSData)
+    func containsImageForURL(_ URL: URL) -> Bool
+    func imageForURL(_ URL: URL) -> Data?
+    func cacheImageFromURL(_ URL: URL, at fileURL: URL)
+    func cacheImage(_ URL: URL, data: Data)
 }
 
 /**
@@ -22,7 +22,7 @@ protocol ImageCache {
 class DiskImageCache: ImageCache {
     static let CacheSubdirectory = "com.dollarshaveclub.imageserum"
     
-    func containsImageForURL(URL: NSURL) -> Bool {
+    func containsImageForURL(_ URL: Foundation.URL) -> Bool {
         guard let hash = hashForURL(URL) else {
             return false
         }
@@ -31,10 +31,10 @@ class DiskImageCache: ImageCache {
             return false
         }
         
-        return NSFileManager.defaultManager().fileExistsAtPath(path.absoluteString)
+        return FileManager.default.fileExists(atPath: path.absoluteString)
     }
     
-    func imageForURL(URL: NSURL) -> NSData? {
+    func imageForURL(_ URL: Foundation.URL) -> Data? {
         guard let hash = hashForURL(URL) else {
             return nil
         }
@@ -43,10 +43,10 @@ class DiskImageCache: ImageCache {
             return nil
         }
         
-        return NSFileManager.defaultManager().contentsAtPath(path.absoluteString)
+        return FileManager.default.contents(atPath: path.absoluteString)
     }
     
-    func cacheImageFromURL(URL: NSURL, at fileURL: NSURL) {
+    func cacheImageFromURL(_ URL: Foundation.URL, at fileURL: Foundation.URL) {
         guard let hash = hashForURL(URL) else {
             return
         }
@@ -56,13 +56,13 @@ class DiskImageCache: ImageCache {
         }
         
         do {
-            try NSFileManager.defaultManager().moveItemAtURL(fileURL, toURL: path)
+            try FileManager.default.moveItem(at: fileURL, to: path)
         } catch {
             
         }
     }
     
-    func cacheImage(URL: NSURL, data: NSData) {
+    func cacheImage(_ URL: Foundation.URL, data: Data) {
         guard let hash = hashForURL(URL) else {
             return
         }
@@ -72,20 +72,20 @@ class DiskImageCache: ImageCache {
         }
         
         do {
-            try data.writeToURL(path, options: [])
+            try data.write(to: path, options: [])
         } catch {
             
         }
     }
     
-    func hashForURL(URL: NSURL) -> String? {
-        guard let data = URL.absoluteString.dataUsingEncoding(NSUTF8StringEncoding) else {
+    func hashForURL(_ URL: Foundation.URL) -> String? {
+        guard let data = URL.absoluteString.data(using: String.Encoding.utf8) else {
             return nil
         }
         
-        var digest = [UInt8](count: Int(CC_MD5_DIGEST_LENGTH), repeatedValue: 0)
+        var digest = [UInt8](repeating: 0, count: Int(CC_MD5_DIGEST_LENGTH))
         
-        CC_MD5(data.bytes, CC_LONG(data.length), &digest)
+        CC_MD5((data as NSData).bytes, CC_LONG(data.count), &digest)
         
         var digestHex = ""
         for index in 0..<Int(CC_MD5_DIGEST_LENGTH) {
@@ -95,12 +95,12 @@ class DiskImageCache: ImageCache {
         return digestHex
     }
     
-    func filePathForImage(byHash: String) -> NSURL? {
-        guard let path = NSSearchPathForDirectoriesInDomains(.CachesDirectory, .UserDomainMask, true).first else {
+    func filePathForImage(_ byHash: String) -> URL? {
+        guard let path = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first else {
             return nil
         }
         
-        let dataPath = NSURL(fileURLWithPath: path).URLByAppendingPathComponent(DiskImageCache.CacheSubdirectory)
+        let dataPath = URL(fileURLWithPath: path).appendingPathComponent(DiskImageCache.CacheSubdirectory)
         return dataPath
     }
 }

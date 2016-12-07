@@ -13,22 +13,22 @@ let DownloadManagerErrorDomain = "com.dollarshaveclub.imageserum.downloadmanager
 let DownloadManagerErrorCodeDataFailed = 100
 
 protocol DownloadManagerDelegate: class {
-    func downloadManagerFinishedDownloading(URL: NSURL, data: NSData)
-    func downloadManagerFinishedDownloadingToDisk(URL: NSURL, fileURL: NSURL)
-    func downloadManagerFailedDownloading(URL: NSURL, error: NSError)
+    func downloadManagerFinishedDownloading(_ URL: URL, data: Data)
+    func downloadManagerFinishedDownloadingToDisk(_ URL: URL, fileURL: URL)
+    func downloadManagerFailedDownloading(_ URL: URL, error: Error)
 }
 
-class DownloadManager: NSObject, NSURLSessionDataDelegate, NSURLSessionDownloadDelegate {
+class DownloadManager: NSObject, URLSessionDataDelegate, URLSessionDownloadDelegate {
     static let sharedManager = DownloadManager(backgroundQueue: DownloadQueue(), priorityQueue: DownloadQueue())
     
     let backgroundQueue: DownloadQueueProtocol
     let priorityQueue: DownloadQueueProtocol
-    let session: NSURLSession
+    let session: Foundation.URLSession
     
     weak var delegate: DownloadManagerDelegate?
     
-    var currentlyDownloading: Set<NSURL>
-    var dispatchQueue: dispatch_queue_t
+    var currentlyDownloading: Set<URL>
+    var dispatchQueue: DispatchQueue
     var maxBackgroundDownloads = 2
     var maxPriorityDownloads = 2
     
@@ -36,15 +36,15 @@ class DownloadManager: NSObject, NSURLSessionDataDelegate, NSURLSessionDownloadD
     var concurrentPriorityDownloads = 0
     
     init(backgroundQueue: DownloadQueueProtocol, priorityQueue: DownloadQueueProtocol) {
-        self.dispatchQueue = dispatch_queue_create("com.dollarshaveclub.imageserum.priority-dispatch-queue", DISPATCH_QUEUE_SERIAL)
-        self.currentlyDownloading = Set<NSURL>()
+        self.dispatchQueue = DispatchQueue(label: "com.dollarshaveclub.imageserum.priority-dispatch-queue", attributes: [])
+        self.currentlyDownloading = Set<URL>()
         self.backgroundQueue = backgroundQueue
         self.priorityQueue = priorityQueue
-        self.session = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration())
+        self.session = Foundation.URLSession(configuration: URLSessionConfiguration.default)
     }
     
-    func fetchImageToDisk(URL: NSURL) {
-        dispatch_async(dispatchQueue) { [weak self] in
+    func fetchImageToDisk(_ URL: Foundation.URL) {
+        dispatchQueue.async { [weak self] in
             guard let manager = self else {
                 return
             }
@@ -57,8 +57,8 @@ class DownloadManager: NSObject, NSURLSessionDataDelegate, NSURLSessionDownloadD
         }
     }
     
-    func fetchImage(URL: NSURL) {
-        dispatch_async(dispatchQueue) { [weak self] in
+    func fetchImage(_ URL: Foundation.URL) {
+        dispatchQueue.async { [weak self] in
             guard let manager = self else {
                 return
             }
@@ -79,7 +79,7 @@ class DownloadManager: NSObject, NSURLSessionDataDelegate, NSURLSessionDownloadD
             if let nextURL = backgroundQueue.pop() {
                 concurrentBackgroundDownloads += 1
                 
-                let task = session.downloadTaskWithURL(nextURL)
+                let task = session.downloadTask(with: nextURL)
                 task.resume()
             }
         }
@@ -90,17 +90,17 @@ class DownloadManager: NSObject, NSURLSessionDataDelegate, NSURLSessionDownloadD
             if let nextURL = priorityQueue.pop() {
                 concurrentPriorityDownloads += 1
                 
-                let task = session.dataTaskWithURL(nextURL, completionHandler: { [weak self] (data, response, error) in
+                let task = session.dataTask(with: nextURL, completionHandler: { [weak self] (data, response, error) in
                     guard let manager = self else {
                         return
                     }
                     
-                    dispatch_async(manager.dispatchQueue) { [weak self] in
+                    manager.dispatchQueue.async { [weak self] in
                         guard let manager = self else {
                             return
                         }
                         
-                        if let data = data where error == nil {
+                        if let data = data, error == nil {
                             manager.delegate?.downloadManagerFinishedDownloading(nextURL, data: data)
                         } else {
                             if let error = error {
@@ -120,12 +120,12 @@ class DownloadManager: NSObject, NSURLSessionDataDelegate, NSURLSessionDownloadD
         }
     }
     
-    func URLSession(session: NSURLSession, downloadTask: NSURLSessionDownloadTask, didFinishDownloadingToURL location: NSURL) {
-        guard let URL = downloadTask.originalRequest?.URL else {
+    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
+        guard let URL = downloadTask.originalRequest?.url else {
             return
         }
         
-        dispatch_async(dispatchQueue) { [weak self] in
+        dispatchQueue.async { [weak self] in
             guard let manager = self else {
                 return
             }
