@@ -1,0 +1,11 @@
+//
+//  CommonCrypto.xcconfig
+//  ImageSerum
+//
+//  Created by David Peredo on 8/15/16.
+//  Copyright © 2016 Dollar Shave Club. All rights reserved.
+//
+
+MODULEMAP_FILE[sdk=iphoneos*]        = $(SRCROOT)/CommonCrypto/iphoneos.modulemap
+MODULEMAP_FILE[sdk=iphonesimulator*] = $(SRCROOT)/CommonCrypto/iphonesimulator.modulemap
+MODULEMAP_FILE[sdk=macosx*]          = $(SRCROOT)/CommonCrypto/macosx.modulemap

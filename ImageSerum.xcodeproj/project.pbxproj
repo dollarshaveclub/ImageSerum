@@ -9,7 +9,17 @@
 /* Begin PBXBuildFile section */
 		BF160E9A1D5AA98C00C7CB56 /* ImageSerum.h in Headers */ = {isa = PBXBuildFile; fileRef = BF160E991D5AA98C00C7CB56 /* ImageSerum.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BF160EA11D5AA98C00C7CB56 /* ImageSerum.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF160E961D5AA98C00C7CB56 /* ImageSerum.framework */; };
-		BF160EA61D5AA98C00C7CB56 /* ImageSerumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF160EA51D5AA98C00C7CB56 /* ImageSerumTests.swift */; };
+		BF30FB5E1D5D1B980078CD80 /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF30FB5D1D5D1B980078CD80 /* ImageManager.swift */; };
+		BF30FB601D5D1BEC0078CD80 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF30FB5F1D5D1BEC0078CD80 /* ImageCache.swift */; };
+		BF8AE2A21D6B8ACD00016F42 /* DownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF082191D63D46E00EBDCCF /* DownloadManager.swift */; };
+		BFF082001D62833600EBDCCF /* CommonCrypto.h in Headers */ = {isa = PBXBuildFile; fileRef = BFF081FF1D62833600EBDCCF /* CommonCrypto.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BFF082091D629BD900EBDCCF /* CommonCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFF081FD1D62833600EBDCCF /* CommonCrypto.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		BFF082111D62FCC100EBDCCF /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF30FB5F1D5D1BEC0078CD80 /* ImageCache.swift */; };
+		BFF082121D62FCC400EBDCCF /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF30FB5D1D5D1B980078CD80 /* ImageManager.swift */; };
+		BFF082151D63BEEE00EBDCCF /* DownloadQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF082141D63BEEE00EBDCCF /* DownloadQueue.swift */; };
+		BFF082171D63CC2B00EBDCCF /* DownloadQueueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF082161D63CC2B00EBDCCF /* DownloadQueueTests.swift */; };
+		BFF082181D63CC3600EBDCCF /* DownloadQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF082141D63BEEE00EBDCCF /* DownloadQueue.swift */; };
+		BFF0821A1D63D46E00EBDCCF /* DownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF082191D63D46E00EBDCCF /* DownloadManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -20,6 +30,13 @@
 			remoteGlobalIDString = BF160E951D5AA98C00C7CB56;
 			remoteInfo = ImageSerum;
 		};
+		BFF082061D6284C500EBDCCF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BF160E8D1D5AA98C00C7CB56 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BFF081FC1D62833600EBDCCF;
+			remoteInfo = CommonCrypto;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -27,8 +44,18 @@
 		BF160E991D5AA98C00C7CB56 /* ImageSerum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageSerum.h; sourceTree = "<group>"; };
 		BF160E9B1D5AA98C00C7CB56 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BF160EA01D5AA98C00C7CB56 /* ImageSerumTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ImageSerumTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		BF160EA51D5AA98C00C7CB56 /* ImageSerumTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSerumTests.swift; sourceTree = "<group>"; };
 		BF160EA71D5AA98C00C7CB56 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BF30FB5D1D5D1B980078CD80 /* ImageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
+		BF30FB5F1D5D1BEC0078CD80 /* ImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
+		BFF081F21D62831C00EBDCCF /* com.dollarshaveclub.CommonCrypto.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = com.dollarshaveclub.CommonCrypto.h; sourceTree = "<group>"; };
+		BFF081F41D62831C00EBDCCF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BFF081FD1D62833600EBDCCF /* CommonCrypto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CommonCrypto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BFF081FF1D62833600EBDCCF /* CommonCrypto.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonCrypto.h; sourceTree = "<group>"; };
+		BFF082011D62833600EBDCCF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BFF082051D6283E400EBDCCF /* CommonCrypto.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = CommonCrypto.xcconfig; sourceTree = "<group>"; };
+		BFF082141D63BEEE00EBDCCF /* DownloadQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadQueue.swift; sourceTree = "<group>"; };
+		BFF082161D63CC2B00EBDCCF /* DownloadQueueTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadQueueTests.swift; sourceTree = "<group>"; };
+		BFF082191D63D46E00EBDCCF /* DownloadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFF082091D629BD900EBDCCF /* CommonCrypto.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -47,6 +75,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BFF081F91D62833600EBDCCF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -55,6 +90,8 @@
 			children = (
 				BF160E981D5AA98C00C7CB56 /* ImageSerum */,
 				BF160EA41D5AA98C00C7CB56 /* ImageSerumTests */,
+				BFF081F11D62831C00EBDCCF /* com.dollarshaveclub.CommonCrypto */,
+				BFF081FE1D62833600EBDCCF /* CommonCrypto */,
 				BF160E971D5AA98C00C7CB56 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -64,6 +101,7 @@
 			children = (
 				BF160E961D5AA98C00C7CB56 /* ImageSerum.framework */,
 				BF160EA01D5AA98C00C7CB56 /* ImageSerumTests.xctest */,
+				BFF081FD1D62833600EBDCCF /* CommonCrypto.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -73,6 +111,10 @@
 			children = (
 				BF160E991D5AA98C00C7CB56 /* ImageSerum.h */,
 				BF160E9B1D5AA98C00C7CB56 /* Info.plist */,
+				BF30FB5F1D5D1BEC0078CD80 /* ImageCache.swift */,
+				BF30FB5D1D5D1B980078CD80 /* ImageManager.swift */,
+				BFF082141D63BEEE00EBDCCF /* DownloadQueue.swift */,
+				BFF082191D63D46E00EBDCCF /* DownloadManager.swift */,
 			);
 			path = ImageSerum;
 			sourceTree = "<group>";
@@ -80,10 +122,29 @@
 		BF160EA41D5AA98C00C7CB56 /* ImageSerumTests */ = {
 			isa = PBXGroup;
 			children = (
-				BF160EA51D5AA98C00C7CB56 /* ImageSerumTests.swift */,
 				BF160EA71D5AA98C00C7CB56 /* Info.plist */,
+				BFF082161D63CC2B00EBDCCF /* DownloadQueueTests.swift */,
 			);
 			path = ImageSerumTests;
+			sourceTree = "<group>";
+		};
+		BFF081F11D62831C00EBDCCF /* com.dollarshaveclub.CommonCrypto */ = {
+			isa = PBXGroup;
+			children = (
+				BFF081F21D62831C00EBDCCF /* com.dollarshaveclub.CommonCrypto.h */,
+				BFF081F41D62831C00EBDCCF /* Info.plist */,
+			);
+			path = com.dollarshaveclub.CommonCrypto;
+			sourceTree = "<group>";
+		};
+		BFF081FE1D62833600EBDCCF /* CommonCrypto */ = {
+			isa = PBXGroup;
+			children = (
+				BFF082051D6283E400EBDCCF /* CommonCrypto.xcconfig */,
+				BFF081FF1D62833600EBDCCF /* CommonCrypto.h */,
+				BFF082011D62833600EBDCCF /* Info.plist */,
+			);
+			path = CommonCrypto;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -94,6 +155,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				BF160E9A1D5AA98C00C7CB56 /* ImageSerum.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BFF081FA1D62833600EBDCCF /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BFF082001D62833600EBDCCF /* CommonCrypto.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +181,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				BFF082071D6284C500EBDCCF /* PBXTargetDependency */,
 			);
 			name = ImageSerum;
 			productName = ImageSerum;
@@ -136,6 +206,24 @@
 			productReference = BF160EA01D5AA98C00C7CB56 /* ImageSerumTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		BFF081FC1D62833600EBDCCF /* CommonCrypto */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BFF082021D62833600EBDCCF /* Build configuration list for PBXNativeTarget "CommonCrypto" */;
+			buildPhases = (
+				BFF081F81D62833600EBDCCF /* Sources */,
+				BFF081F91D62833600EBDCCF /* Frameworks */,
+				BFF081FA1D62833600EBDCCF /* Headers */,
+				BFF081FB1D62833600EBDCCF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CommonCrypto;
+			productName = CommonCrypto;
+			productReference = BFF081FD1D62833600EBDCCF /* CommonCrypto.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -143,13 +231,18 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = "Dollar Shave Club";
 				TargetAttributes = {
 					BF160E951D5AA98C00C7CB56 = {
 						CreatedOnToolsVersion = 7.3;
+						LastSwiftMigration = 0810;
 					};
 					BF160E9F1D5AA98C00C7CB56 = {
+						CreatedOnToolsVersion = 7.3;
+						LastSwiftMigration = 0810;
+					};
+					BFF081FC1D62833600EBDCCF = {
 						CreatedOnToolsVersion = 7.3;
 					};
 				};
@@ -168,6 +261,7 @@
 			targets = (
 				BF160E951D5AA98C00C7CB56 /* ImageSerum */,
 				BF160E9F1D5AA98C00C7CB56 /* ImageSerumTests */,
+				BFF081FC1D62833600EBDCCF /* CommonCrypto */,
 			);
 		};
 /* End PBXProject section */
@@ -187,6 +281,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BFF081FB1D62833600EBDCCF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -194,6 +295,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF30FB601D5D1BEC0078CD80 /* ImageCache.swift in Sources */,
+				BFF082151D63BEEE00EBDCCF /* DownloadQueue.swift in Sources */,
+				BF30FB5E1D5D1B980078CD80 /* ImageManager.swift in Sources */,
+				BFF0821A1D63D46E00EBDCCF /* DownloadManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,7 +306,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BF160EA61D5AA98C00C7CB56 /* ImageSerumTests.swift in Sources */,
+				BFF082181D63CC3600EBDCCF /* DownloadQueue.swift in Sources */,
+				BFF082121D62FCC400EBDCCF /* ImageManager.swift in Sources */,
+				BFF082171D63CC2B00EBDCCF /* DownloadQueueTests.swift in Sources */,
+				BFF082111D62FCC100EBDCCF /* ImageCache.swift in Sources */,
+				BF8AE2A21D6B8ACD00016F42 /* DownloadManager.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BFF081F81D62833600EBDCCF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -212,6 +328,11 @@
 			isa = PBXTargetDependency;
 			target = BF160E951D5AA98C00C7CB56 /* ImageSerum */;
 			targetProxy = BF160EA21D5AA98C00C7CB56 /* PBXContainerItemProxy */;
+		};
+		BFF082071D6284C500EBDCCF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BFF081FC1D62833600EBDCCF /* CommonCrypto */;
+			targetProxy = BFF082061D6284C500EBDCCF /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -230,8 +351,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -279,8 +402,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -300,6 +425,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -310,6 +436,8 @@
 		BF160EAB1D5AA98C00C7CB56 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -320,12 +448,17 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.dollarshaveclub.ImageSerum;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_INCLUDE_PATHS = CommonCrypto;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		BF160EAC1D5AA98C00C7CB56 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -336,6 +469,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.dollarshaveclub.ImageSerum;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_INCLUDE_PATHS = CommonCrypto;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -346,6 +481,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dollarshaveclub.ImageSerumTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -356,6 +492,43 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dollarshaveclub.ImageSerumTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		BFF082031D62833600EBDCCF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BFF082051D6283E400EBDCCF /* CommonCrypto.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = CommonCrypto/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.dollarshaveclub.CommonCrypto.CommonCrypto;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		BFF082041D62833600EBDCCF /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BFF082051D6283E400EBDCCF /* CommonCrypto.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = CommonCrypto/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.dollarshaveclub.CommonCrypto.CommonCrypto;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 			};
 			name = Release;
 		};
@@ -378,6 +551,7 @@
 				BF160EAC1D5AA98C00C7CB56 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		BF160EAD1D5AA98C00C7CB56 /* Build configuration list for PBXNativeTarget "ImageSerumTests" */ = {
 			isa = XCConfigurationList;
@@ -386,6 +560,16 @@
 				BF160EAF1D5AA98C00C7CB56 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BFF082021D62833600EBDCCF /* Build configuration list for PBXNativeTarget "CommonCrypto" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BFF082031D62833600EBDCCF /* Debug */,
+				BFF082041D62833600EBDCCF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
